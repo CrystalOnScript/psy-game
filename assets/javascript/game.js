@@ -4,7 +4,7 @@
  var wins = 0;
  var losses = 0;
  var guesses = 9;
-
+ var wrongLetters = [];
 	
 document.getElementById("numberOfWins").innerHTML = wins;
 document.getElementById("numberOfLosses").innerHTML = losses; 
@@ -23,26 +23,35 @@ document.onkeyup = function(event){
 
 		 if(computerLetter === userLetter){
 			wins++;
+			alert("You must be psychic! I was thinking of " + computerLetter + "!");
 			console.log(wins);
 			computerLetter = letters[Math.floor(Math.random() * letters.length)];
 			console.log(computerLetter);
-			
-
+			wrongLetters = [];
+		
 		}else{
-			document.getElementById("guessdisplay").innerHTML += " " + userLetter;
+
+
 			if (userLetter !== computerLetter){
 				guesses--;
-				console.log(guesses)
+				wrongLetters.push(userLetter);
+
+				console.log(wrongLetters);
+				console.log(guesses);
+				document.getElementById("guessdisplay").innerHTML += " " + userLetter;
 			}
 	
 			if (guesses === 0){
-				alert("you lose, I was thinking of " + computerLetter);
+				alert("you lose, I was thinking of " + computerLetter + ".");
 				losses++;
+				wrongLetters = [];
 				console.log("number of losses" + losses);
 				document.getElementById("guessdisplay").innerHTML = " " 
 				guesses = 9;
 				computerLetter = letters[Math.floor(Math.random() * letters.length)];
 			} 
+
+			
 
 
 		}
