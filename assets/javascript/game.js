@@ -17,12 +17,13 @@ console.log(computerLetter)
 
 document.onkeyup = function(event){
 		
-		var userLetter = event.key;
+		var userLetter = event.key.toLowerCase();
 
 
 
 		 if(computerLetter === userLetter){
 			wins++;
+			guesses = 9;
 			alert("You must be psychic! I was thinking of " + computerLetter + "!");
 			console.log(wins);
 			computerLetter = letters[Math.floor(Math.random() * letters.length)];
